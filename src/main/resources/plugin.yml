@@ -1,0 +1,10 @@
+name: Crates-MongodbClient
+version: 0.1-ALPHA
+main: de.mongodbclient.crates.Crates
+author: MongodbClient
+api-version: 1.18
+commands:
+  crates:
+    aliases:
+      - crate
+      - c

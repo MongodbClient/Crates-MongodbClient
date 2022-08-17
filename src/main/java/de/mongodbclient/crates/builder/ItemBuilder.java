@@ -1,6 +1,5 @@
 package de.mongodbclient.crates.builder;
 
-import de.mongodbclient.crates.gui.ItemManager;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Material;
@@ -22,6 +21,7 @@ public class ItemBuilder {
         this.itemStack = new ItemStack(material, 1);
         this.itemMeta = this.itemStack.getItemMeta();
     }
+
     public ItemBuilder(ItemStack itemStack) {
         this.itemStack = itemStack;
         this.itemMeta = itemStack.getItemMeta();
