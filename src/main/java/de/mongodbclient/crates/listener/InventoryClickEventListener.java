@@ -36,6 +36,9 @@ public class InventoryClickEventListener implements Listener {
                     }
                 }
             }
+            if(event.getView().getTitle().equalsIgnoreCase(PlayerUtils.playerInventory.get(event.getWhoClicked().getName()))) {
+                event.setCancelled(true);
+            }
             if (event.getView().getTitle().equalsIgnoreCase(Crates.getInstance().getConfigObject().getOpenerItem().getInventoryName())) {
                 event.setCancelled(true);
             }
