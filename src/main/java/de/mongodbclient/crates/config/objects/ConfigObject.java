@@ -57,6 +57,14 @@ public class ConfigObject {
                 "**Information**",
                 "made with \uD83D\uDC97 by MongodbClient"
         ));
+        messages.put("DeleteLog", new WebhookConfig(
+                "testHook",
+                "Der Administrator {0} hat das Crate `{1}` gelöscht!",
+                "MongoLogging",
+                "CrateSystem - MongodbClient",
+                "**Information**",
+                "made with \uD83D\uDC97 by MongodbClient"
+        ));
         Crates.getInstance().getConfigManager().registerConfig(new File(PATH), messages);
     }
 
@@ -73,6 +81,9 @@ public class ConfigObject {
         }
         if (type == Type.PLAYER) {
             return Crates.getInstance().getConfigManager().readValue(getContent(), "OpenLog", WebhookConfig.class);
+        }
+        if (type == Type.DELETE) {
+            return Crates.getInstance().getConfigManager().readValue(getContent(), "DeleteLog", WebhookConfig.class);
         }
         return null;
     }
@@ -104,7 +115,8 @@ public class ConfigObject {
     public enum Type {
         ADMIN,
         ADD,
-        PLAYER
+        PLAYER,
+        DELETE
     }
 
     @Getter

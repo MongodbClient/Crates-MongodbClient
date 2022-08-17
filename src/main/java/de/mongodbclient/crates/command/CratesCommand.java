@@ -53,6 +53,17 @@ public class CratesCommand implements CommandExecutor {
                 Crates.getInstance().getKeyManager().deleteKey(key);
                 commandSender.sendMessage(Crates.getInstance().getMessageObject().getContent().get("delete-successfully").getAsString().replace("{0}", key)
                 );
+                ConfigObject.WebhookConfig webhookConfig = Crates.getInstance().getConfigObject().getWebhook(ConfigObject.Type.DELETE);
+                DiscordWebhook discordWebhook = new DiscordWebhook(webhookConfig.getWebhook());
+                discordWebhook.setUsername(webhookConfig.getName());
+                discordWebhook.addEmbed(new DiscordWebhook.EmbedObject()
+                        .setAuthor(webhookConfig.getAuthor(), null, null)
+                        .setDescription(webhookConfig.getMessage().replace("{0}", commandSender.getName()).replace("{1}", key))
+                        .setTitle(webhookConfig.getTitle())
+                        .setColor(Color.RED)
+                        .setFooter(webhookConfig.getFooter(), null)
+                );
+                discordWebhook.execute();
                 return true;
             }
         }
