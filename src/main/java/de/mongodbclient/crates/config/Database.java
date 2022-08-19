@@ -11,6 +11,7 @@ import java.util.Map;
 public class Database {
 
     final ItemStack itemStack;
+    final int amount;
     final int count;
     final Map<String, Integer> enchantments;
 }

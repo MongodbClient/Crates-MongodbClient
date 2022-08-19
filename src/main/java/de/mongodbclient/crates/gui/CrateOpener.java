@@ -28,6 +28,7 @@ public class CrateOpener {
     List<ItemStack> items = new ArrayList<>();
     int time = 20 * 10;
     boolean stop = false;
+
     public CrateOpener(Player player) {
         this.player = player;
     }
@@ -45,12 +46,15 @@ public class CrateOpener {
             ItemStack i = database.getItemStack();
             for (int a = 0; a < database.getCount(); a++) {
                 if (database.getEnchantments().isEmpty()) {
-                    items.add(new ItemBuilder(i).build());
+                    items.add(new ItemBuilder(i)
+                            .setAmount(database.getAmount())
+                            .build());
                 } else {
                     ItemStack i3 = i;
                     database.getEnchantments().entrySet().forEach(test -> {
                         i3.addEnchantment(Enchantment.getByName(test.getKey()), test.getValue());
                     });
+                    i3.setAmount(database.getAmount());
                     items.add(i3);
                 }
             }

@@ -24,7 +24,7 @@ public class ItemKeyConfig {
                         .setLore("Default Lore")
                         .setAmount(1)
                         .setSubID((byte) 0)
-                        .build(), 10, s)
+                        .build(), 1, 10, s)
                 );
             } else {
                 mapp.put(i, new Database(new ItemBuilder(Material.BARRIER)
@@ -32,7 +32,7 @@ public class ItemKeyConfig {
                         .setLore("Default Lore")
                         .setAmount(1)
                         .setSubID((byte) 0)
-                        .build(), 10, new HashMap<>())
+                        .build(), 1, 10, new HashMap<>())
                 );
             }
         }
