@@ -45,7 +45,9 @@ public class ItemManager {
             String json = Crates.getInstance().getConfigManager().getGson().toJson(all.getValue());
             Database database = Crates.getInstance().getConfigManager().getGson().fromJson(json, Database.class);
             ItemStack i = database.getItemStack();
-            inventory.setItem(Integer.valueOf(all.getKey()) + 27, new ItemBuilder(i).setLore(inventoryItems.getAmount().replace("{3}", String.valueOf(database.getCount()))).build());
+            inventory.setItem(Integer.valueOf(all.getKey()) + 27, new ItemBuilder(i)
+                            .setAmount(database.getAmount())
+                    .setLore(inventoryItems.getAmount().replace("{3}", String.valueOf(database.getCount()))).build());
         });
         player.openInventory(inventory);
         player.updateInventory();

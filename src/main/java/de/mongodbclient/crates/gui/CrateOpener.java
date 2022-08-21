@@ -44,18 +44,25 @@ public class CrateOpener {
             String json = Crates.getInstance().getConfigManager().getGson().toJson(all.getValue());
             Database database = Crates.getInstance().getConfigManager().getGson().fromJson(json, Database.class);
             ItemStack i = database.getItemStack();
+            if (database.getSkullData().isHasSkullMeta()) {
+                i = Crates.getInstance().getSkullBuilder().getSkull(database.getSkullData().getSkullName(), i.getItemMeta().getDisplayName(), database.getAmount(), i.getItemMeta().getLore());
+            }
             for (int a = 0; a < database.getCount(); a++) {
-                if (database.getEnchantments().isEmpty()) {
-                    items.add(new ItemBuilder(i)
-                            .setAmount(database.getAmount())
-                            .build());
+                if (database.getSkullData().isHasSkullMeta()) {
+                    items.add(i);
                 } else {
-                    ItemStack i3 = i;
-                    database.getEnchantments().entrySet().forEach(test -> {
-                        i3.addEnchantment(Enchantment.getByName(test.getKey()), test.getValue());
-                    });
-                    i3.setAmount(database.getAmount());
-                    items.add(i3);
+                    if (database.getEnchantments().isEmpty()) {
+                        items.add(new ItemBuilder(i)
+                                .setAmount(database.getAmount())
+                                .build());
+                    } else {
+                        ItemStack i3 = i;
+                        database.getEnchantments().entrySet().forEach(test -> {
+                            i3.addEnchantment(Enchantment.getByName(test.getKey()), test.getValue());
+                        });
+                        i3.setAmount(database.getAmount());
+                        items.add(i3);
+                    }
                 }
             }
         });

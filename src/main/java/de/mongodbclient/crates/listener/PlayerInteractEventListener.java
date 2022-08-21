@@ -21,6 +21,7 @@ public class PlayerInteractEventListener implements Listener {
         if (event.getItem().getItemMeta() == null) return;
         if (event.getItem().getItemMeta().getDisplayName() == null) return;
         if (event.getItem().getType() == Material.PLAYER_HEAD) {
+            if(event.getItem().getItemMeta().getLore() == null) return;
             if (!event.getItem().getItemMeta().getLore().isEmpty()) {
                 String lore = event.getItem().getItemMeta().getLore().get(0);
                 if (lore.startsWith("§e")) {

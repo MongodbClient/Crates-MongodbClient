@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import de.mongodbclient.crates.Crates;
 import de.mongodbclient.crates.builder.ItemBuilder;
 import de.mongodbclient.crates.config.Database;
+import de.mongodbclient.crates.config.SkullData;
 import org.bukkit.Material;
 
 import java.io.File;
@@ -24,7 +25,15 @@ public class ItemKeyConfig {
                         .setLore("Default Lore")
                         .setAmount(1)
                         .setSubID((byte) 0)
-                        .build(), 1, 10, s)
+                        .build(), 1, 10, s, new SkullData(false, ""))
+                );
+            } else if(i == 1) {
+                mapp.put(i, new Database(new ItemBuilder(Material.PLAYER_HEAD)
+                        .setDisplayName("Das ist ein Skull!")
+                        .setLore("skull")
+                        .setAmount(1)
+                        .setSubID((byte) 0)
+                        .build(), 1, 10, s, new SkullData(true, "Exceptionpilot"))
                 );
             } else {
                 mapp.put(i, new Database(new ItemBuilder(Material.BARRIER)
@@ -32,7 +41,7 @@ public class ItemKeyConfig {
                         .setLore("Default Lore")
                         .setAmount(1)
                         .setSubID((byte) 0)
-                        .build(), 1, 10, new HashMap<>())
+                        .build(), 1, 10, new HashMap<>(), new SkullData(false, ""))
                 );
             }
         }

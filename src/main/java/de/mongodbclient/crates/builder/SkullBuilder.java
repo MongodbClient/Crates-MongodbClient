@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -30,13 +31,15 @@ public class SkullBuilder {
         }
     }
 
-    public ItemStack getSkull(String name, String display) {
+    public ItemStack getSkull(String name, String display, int amount, List<String> lore) {
         if (stack.get(name + display) == null) {
-            ItemStack itemStack = new ItemStack(Material.PLAYER_HEAD, 1);
+            ItemStack itemStack = new ItemStack(Material.PLAYER_HEAD, amount);
             SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
             skullMeta.setDisplayName(display);
+            skullMeta.setLore(lore);
             Objects.requireNonNull(skullMeta).setOwningPlayer(Bukkit.getOfflinePlayer(name));
             itemStack.setItemMeta(skullMeta);
+            itemStack.setAmount(amount);
             stack.put(name + display, itemStack);
             return itemStack;
         } else {

@@ -14,4 +14,5 @@ public class Database {
     final int amount;
     final int count;
     final Map<String, Integer> enchantments;
+    final SkullData skullData;
 }
