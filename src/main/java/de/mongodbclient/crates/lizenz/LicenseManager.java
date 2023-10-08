@@ -10,8 +10,6 @@ import java.util.logging.Level;
 
 public class LicenseManager {
 
-    private final static String SERVER = "https://api.primeapi.de/licenseapi/";
-
     public boolean validateLicense(String license, String plugin) {
         return true;
     }
