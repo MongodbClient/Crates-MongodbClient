@@ -32,28 +32,23 @@ public class Crates extends JavaPlugin {
     public void onEnable() {
         instance = this;
         licenseManager = new LicenseManager();
-        if (!licenseManager.validateLicense("GIFT-FG3K-SBAD-DJLS", "PrivateBanSystem")) {
-            this.getPluginLoader().disablePlugin(this);
-            return;
-        } else {
-            configManager = new ConfigManager();
-            messageObject = new MessageObject();
-            configObject = new ConfigObject();
-            messageObject.addContent();
-            configObject.addContent();
-            skullBuilder = new SkullBuilder();
-            mySQL = new MySQL();
-            mySQL.createConnection(configObject.getDatabaseData());
-            if (mySQL.isConnected()) {
-                mySQL.createTable();
-            }
-            keyManager = new KeyManager();
-
-            this.getCommand("crates").setExecutor(new CratesCommand());
-            this.getServer().getPluginManager().registerEvents(new InventoryClickEventListener(), this);
-            this.getServer().getPluginManager().registerEvents(new PlayerInteractEventListener(), this);
-            this.getServer().getPluginManager().registerEvents(new InventoryCloseEventListener(), this);
+        configManager = new ConfigManager();
+        messageObject = new MessageObject();
+        configObject = new ConfigObject();
+        messageObject.addContent();
+        configObject.addContent();
+        skullBuilder = new SkullBuilder();
+        mySQL = new MySQL();
+        mySQL.createConnection(configObject.getDatabaseData());
+        if (mySQL.isConnected()) {
+            mySQL.createTable();
         }
+        keyManager = new KeyManager();
+
+        this.getCommand("crates").setExecutor(new CratesCommand());
+        this.getServer().getPluginManager().registerEvents(new InventoryClickEventListener(), this);
+        this.getServer().getPluginManager().registerEvents(new PlayerInteractEventListener(), this);
+        this.getServer().getPluginManager().registerEvents(new InventoryCloseEventListener(), this);
     }
 
     @Override
