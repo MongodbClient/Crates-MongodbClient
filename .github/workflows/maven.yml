@@ -1,4 +1,4 @@
-name: ${{ github.event.repository.name }} build process
+name: build process
 
 on:
   push:
